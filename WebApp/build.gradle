@@ -1,0 +1,16 @@
+apply plugin: 'war'
+
+group = 'ch.heigvd'
+version = '1.0-SNAPSHOT'
+description = "AMT course project"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()        
+}
+
+dependencies {
+    providedCompile group: 'javax', name: 'javaee-api', version:'7.0'
+}
