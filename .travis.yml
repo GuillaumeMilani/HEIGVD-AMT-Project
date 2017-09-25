@@ -3,7 +3,7 @@ branches:
   only:
     - master
 script:
-  - cd WepApp/
+  - cd WebApp/
   - ./gradle build
 deploy:
   provider: releases
