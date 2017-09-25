@@ -4,7 +4,7 @@ branches:
     - master
 script:
   - cd WebApp/
-  - ./gradle build
+  - gradle build
 deploy:
   provider: releases
   api_key:
