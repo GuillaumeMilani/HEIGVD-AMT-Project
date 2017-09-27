@@ -1,5 +1,7 @@
 apply plugin: 'war'
 
+war.archiveName "WebApp.war"
+
 group = 'ch.heigvd'
 version = '1.0-SNAPSHOT'
 description = "AMT course project"
