@@ -18,7 +18,8 @@ USER jboss
 # Download & comlile our source 
 RUN git clone https://github.com/lognaume/amt-project.git
 RUN cd amt-project/WebApp
-#RUN jar cvt build.war *
+RUN jar -cvf build.war *
+RUN mv build.war /opt/jboss/wildfly/standalone/deployments/
 
 
 
