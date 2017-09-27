@@ -2,6 +2,7 @@ language: java
 branches:
   only:
     - master
+    - travis
 script:
   - cd WebApp/
   - gradle build
