@@ -3,9 +3,10 @@ branches:
   only:
     - master
     - travis
-before_deploy:
+script:
   - cd WebApp/
   - gradle build
+before_deploy:
   - cd build/libs/
 deploy:
   provider: releases
