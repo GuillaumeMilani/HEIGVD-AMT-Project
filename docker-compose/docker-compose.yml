@@ -1,7 +1,22 @@
 version: '2'
 services:
   wildfly:
+    container_name: amt_wildfly
     build: ../images/wildfly
     ports:
      - "8080:8080"
      - "9990:9990"
+  mysql:
+    container_name: amt_mysql
+    restart: always
+    build: ../images/mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true" 
+    volumes:
+      - mac-data:/var/lib/mysql
+    expose:
+      - "3306"
+    ports: 
+      - "3306:3306"
+volumes:
+  mac-data:

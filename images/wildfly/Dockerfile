@@ -16,10 +16,10 @@ RUN yum update -y && yum -y install git && yum clean all
 USER jboss
 
 # Download & comlile our source 
-RUN git clone https://github.com/lognaume/amt-project.git
-RUN cd amt-project/WebApp
-RUN jar -cvf build.war *
-RUN mv build.war /opt/jboss/wildfly/standalone/deployments/
+# RUN git clone https://github.com/lognaume/amt-project.git
+# RUN cd amt-project/WebApp
+# RUN jar -cvf build.war *
+# RUN mv build.war /opt/jboss/wildfly/standalone/deployments/
 
 
 
