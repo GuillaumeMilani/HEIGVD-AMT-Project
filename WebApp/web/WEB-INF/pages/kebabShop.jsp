@@ -7,7 +7,17 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <p>Our kebab shop is ${requestScope.kebabShop.name}</p>
+        <h1>Kebab shops manager</h1>
+        <table>
+            <c:forEach items="${kebabShops}" var="kebabShop">
+                <tr>
+                    <td>${kebabShop.name}</td>
+                    <td>${kebabShop.street}</td>
+                    <td>${kebabShop.city}</td>
+                    <td>${kebabShop.kebabAveragePrice}</td>
+
+                </tr>
+            </c:forEach>
+        </table>
     </body>
 </html>
