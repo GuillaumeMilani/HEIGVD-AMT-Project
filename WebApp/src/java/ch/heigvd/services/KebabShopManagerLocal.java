@@ -13,7 +13,13 @@ public interface KebabShopManagerLocal {
 
     KebabShop getRandomKebabShop();
 
+    List<KebabShop> findAllKebabShops(int page);
+
     List<KebabShop> findAllKebabShops();
-    
+
+    int countKebabShops();
+
+    int getNbPages();
+
     void addKebabShop(KebabShop kebabShop) throws Exception;
 }

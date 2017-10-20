@@ -26,8 +26,15 @@ public class KebabShopsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println(request.getServletPath());
-        request.setAttribute("kebabShops", kebabShopManager.findAllKebabShops());
+
+        String pageString = request.getParameter("page");
+
+        int currentPage = pageString == null ? 1 : Integer.valueOf(request.getParameter("page"));
+        int nbPages = kebabShopManager.getNbPages();
+
+        request.setAttribute("currentPage", currentPage);
+        request.setAttribute("nbPages", nbPages);
+        request.setAttribute("kebabShops", kebabShopManager.findAllKebabShops(currentPage));
         request.getRequestDispatcher("WEB-INF/pages/kebabShop.jsp").forward(request, response);
     }
 
@@ -41,13 +48,13 @@ public class KebabShopsServlet extends HttpServlet {
         float kebabAveragePrice = Float.valueOf(request.getParameter("kebab_average_price"));
         String creationDate = new Date(System.currentTimeMillis()).toString();
         KebabShop kebabShop = new KebabShop(name, street, city, country, phone, creationDate, kebabAveragePrice);
-        
+
         try {
             kebabShopManager.addKebabShop(kebabShop);
         } catch (Exception ex) {
             Logger.getLogger(KebabShopsServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         doGet(request, response);
     }
 }

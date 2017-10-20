@@ -1,5 +1,6 @@
 package ch.heigvd.services;
 
+import ch.heigvd.Constants;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,21 +31,7 @@ public class KebabShopManager implements KebabShopManagerLocal {
 
     @Override
     public List<KebabShop> findAllKebabShops() {
-        List<KebabShop> kebabShops = new ArrayList<>();
-
-        try {
-            Connection connection = dataSource.getConnection();
-            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM Kebab_Shop");
-            ResultSet resultSet = pstmt.executeQuery();
-            while (resultSet.next()) {
-                kebabShops.add(getKebabShopFromResult(resultSet));
-            }
-            connection.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(KebabShopManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return kebabShops;
+        return findAllKebabShops(-1);
     }
 
     private KebabShop getKebabShopFromResult(ResultSet resultSet) throws SQLException {
@@ -73,10 +60,61 @@ public class KebabShopManager implements KebabShopManagerLocal {
             PreparedStatement pstmt = connection.prepareStatement(query);
 
             pstmt.executeUpdate();
-            
+
             connection.close();
         } catch (SQLException ex) {
             Logger.getLogger(KebabShopManager.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public List<KebabShop> findAllKebabShops(int page) {
+        String limit = "";
+
+        if (page > 0 && page <= getNbPages()) {
+            int pageBegin = Constants.ITEM_PER_PAGE * (page - 1);
+            limit = " LIMIT " + pageBegin + "," + Constants.ITEM_PER_PAGE;
+        }
+
+        List<KebabShop> kebabShops = new ArrayList<>();
+
+        try {
+            Connection connection = dataSource.getConnection();
+            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM Kebab_Shop" + limit);
+            ResultSet resultSet = pstmt.executeQuery();
+            while (resultSet.next()) {
+                kebabShops.add(getKebabShopFromResult(resultSet));
+            }
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(KebabShopManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return kebabShops;
+    }
+
+    @Override
+    public int countKebabShops() {
+        final String nbShopsString = "nb_shops";
+        int count = 0;
+
+        try {
+            Connection connection = dataSource.getConnection();
+            PreparedStatement pstmt = connection.prepareStatement("SELECT COUNT(*) AS " + nbShopsString + " FROM Kebab_Shop");
+            ResultSet resultSet = pstmt.executeQuery();
+            if (resultSet.next()) {
+                count = resultSet.getInt(nbShopsString);
+            }
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(KebabShopManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return count;
+    }
+
+    @Override
+    public int getNbPages() {
+        return (int) Math.ceil((double) countKebabShops() / (double) Constants.ITEM_PER_PAGE);
     }
 }
