@@ -1,4 +1,4 @@
-package web.controllers;
+package ch.heigvd.web.controllers;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

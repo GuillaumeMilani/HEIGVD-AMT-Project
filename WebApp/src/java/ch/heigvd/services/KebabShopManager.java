@@ -1,4 +1,4 @@
-package services;
+package ch.heigvd.services;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.sql.DataSource;
-import model.entities.KebabShop;
+import ch.heigvd.model.entities.KebabShop;
 
 /**
  *
@@ -20,7 +20,7 @@ import model.entities.KebabShop;
 @Stateless
 public class KebabShopManager implements KebabShopManagerLocal {
 
-    @Resource(lookup = "java:/MySqlDS")
+    @Resource(lookup = "java:/amtDS")
     private DataSource dataSource;
 
     @Override

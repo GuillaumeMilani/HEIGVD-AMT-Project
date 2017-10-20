@@ -1,8 +1,8 @@
-package services;
+package ch.heigvd.services;
 
 import java.util.List;
 import javax.ejb.Local;
-import model.entities.KebabShop;
+import ch.heigvd.model.entities.KebabShop;
 
 /**
  * 

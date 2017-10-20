@@ -1,4 +1,4 @@
-package model.entities;
+package ch.heigvd.model.entities;
 
 /**
  *

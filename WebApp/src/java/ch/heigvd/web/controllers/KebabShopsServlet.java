@@ -1,4 +1,4 @@
-package web.controllers;
+package ch.heigvd.web.controllers;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -10,8 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.entities.KebabShop;
-import services.KebabShopManagerLocal;
+import ch.heigvd.model.entities.KebabShop;
+import ch.heigvd.services.KebabShopManagerLocal;
 
 /**
  *

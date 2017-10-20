@@ -1,10 +1,10 @@
-package services;
+package ch.heigvd.services;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javax.ejb.Singleton;
-import model.entities.KebabShop;
+import ch.heigvd.model.entities.KebabShop;
 
 /**
  * 
