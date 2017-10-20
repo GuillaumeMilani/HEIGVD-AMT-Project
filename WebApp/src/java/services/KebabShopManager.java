@@ -1,8 +1,16 @@
 package services;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.EJB;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.Resource;
 import javax.ejb.Stateless;
+import javax.sql.DataSource;
 import model.entities.KebabShop;
 
 /**
@@ -12,17 +20,43 @@ import model.entities.KebabShop;
 @Stateless
 public class KebabShopManager implements KebabShopManagerLocal {
 
-    @EJB
-    InMemoryDataStoreLocal inMemoryDataStore;
-
+    @Resource(lookup = "java:/MySqlDS")
+    private DataSource dataSource;
+    
     @Override
     public KebabShop getRandomKebabShop() {
-        int key = inMemoryDataStore.insertKebabShop(new KebabShop("Dylan", "Grand-Rue 1", "Yverdon", "Switzerland", "0", "today", 9.85f));
-        return inMemoryDataStore.findKebabShop(key);
+        return new KebabShop("Dylan", "Grand-Rue 1", "Yverdon", "Switzerland", "0", "today", 9.85f);
     }
 
     @Override
-    public List<KebabShop> getAllKebabShops() {
-        return inMemoryDataStore.findAllKebabShops();
+    public List<KebabShop> findAllKebabShops() {
+        List<KebabShop> kebabShops = new ArrayList<>();
+        
+        try {
+            Connection connection = dataSource.getConnection();
+            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM Kebab_Shop");
+            ResultSet resultSet = pstmt.executeQuery();
+            while (resultSet.next()) {
+                kebabShops.add(getKebabShopFromResult(resultSet));
+            }
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(KebabShopManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return kebabShops;
+    }
+    
+    private KebabShop getKebabShopFromResult(ResultSet resultSet) throws SQLException {
+        String name = resultSet.getString("name");
+        String street = resultSet.getString("street");
+        String city = resultSet.getString("city");
+        String country = resultSet.getString("country");
+        String phone = resultSet.getString("phone");
+        float kebabAveragePrice = resultSet.getFloat("kebab_average_price");
+        String creationDate = resultSet.getString("creation_date");
+        KebabShop kebabShop = new KebabShop(name, street, city, country, phone, creationDate, kebabAveragePrice);
+        
+        return kebabShop;
     }
 }

@@ -22,8 +22,7 @@ public class KebabShopsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        request.setAttribute("kebabShops", kebabShopManager.getAllKebabShops());
+        request.setAttribute("kebabShops", kebabShopManager.findAllKebabShops());
         request.getRequestDispatcher("WEB-INF/pages/kebabShop.jsp").forward(request, response);
     }
 }
