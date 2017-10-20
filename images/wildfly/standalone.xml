@@ -151,7 +151,7 @@
                 <datasource jta="true" jndi-name="java:/amtDS" pool-name="amtDS" enabled="true" use-ccm="true">
                     <connection-url>jdbc:mysql://db:3306/AMT</connection-url>
                     <driver-class>com.mysql.jdbc.Driver</driver-class>
-                    <driver>mysql-connector-java-5.1.44-bin.jar_com.mysql.jdbc.Driver_5_1</driver>
+                    <driver>mysql-connector.jar_com.mysql.jdbc.Driver_5_1</driver>
                     <security>
                         <user-name>root</user-name>
                         <password>myPass</password>

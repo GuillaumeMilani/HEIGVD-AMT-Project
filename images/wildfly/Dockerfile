@@ -2,7 +2,7 @@ FROM jboss/wildfly:10.1.0.Final
 
 MAINTAINER Maxime Guillod <maxime.guillod@heig-vd.ch>
 
-# COPY mysql-connector.jar /opt/jboss/wildfly/standalone/deployments/
+COPY mysql-connector.jar /opt/jboss/wildfly/standalone/deployments/
 COPY standalone.xml /opt/jboss/wildfly/standalone/configuration/
 
 # Set the user and the password
