@@ -13,7 +13,7 @@ services:
     restart: always
     build: ../images/mysql
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "true" 
+      - MYSQL_ROOT_PASSWORD=myPass
     volumes:
       - mac-data:/var/lib/mysql
     expose:
@@ -24,7 +24,7 @@ services:
     container_name: amt_phpmyadmin
     build: ../images/phpmyadmin
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+      - MYSQL_ROOT_PASSWORD=myPass
     ports:
       - "6060:80"
     links:
