@@ -1,18 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.entities;
 
 /**
  *
- * @author lognaume
+ * @author Guillaume Milani & Maxime Guillod
  */
 public class KebabShop {
 
-    private String name, street, city, country, phone, creationDate;
-    private float kebabAveragePrice;
+    private final String name, street, city, country, phone, creationDate;
+    private final float kebabAveragePrice;
 
     public KebabShop(String name, String street, String city, String country, String phone, String creationDate, float kebabAveragePrice) {
         this.name = name;
