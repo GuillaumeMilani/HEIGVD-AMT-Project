@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author lognaume
+ * @author Guillaume Milani & Maxime Guillod
  */
 @WebServlet(name="HomeServlet", urlPatterns="/pages/home")
 public class HomeServlet extends HttpServlet {

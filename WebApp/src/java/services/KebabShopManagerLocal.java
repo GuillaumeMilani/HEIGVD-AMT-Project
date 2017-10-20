@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package services;
 
 import java.util.List;
@@ -11,7 +6,7 @@ import model.entities.KebabShop;
 
 /**
  *
- * @author lognaume
+ * @author Guillaume Milani & Maxime Guillod
  */
 @Local
 public interface KebabShopManagerLocal {
