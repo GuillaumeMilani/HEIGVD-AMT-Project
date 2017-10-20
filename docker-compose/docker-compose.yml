@@ -6,6 +6,8 @@ services:
     ports:
      - "8080:8080"
      - "9990:9990"
+    links:
+      - mysql:db
   mysql:
     container_name: amt_mysql
     restart: always
@@ -18,5 +20,14 @@ services:
       - "3306"
     ports: 
       - "3306:3306"
+  phpmyadmin:
+    container_name: amt_phpmyadmin
+    build: ../images/phpmyadmin
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+    ports:
+      - "6060:80"
+    links:
+      - mysql:db
 volumes:
   mac-data:
