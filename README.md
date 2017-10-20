@@ -24,3 +24,12 @@ Depuis wildfly, il faut se connecter sur localhost (127.0.0.1) sur le port 3306 
 | *User* |  *Password*        |
 |---     |---                 |
 | root   | *\*\*\*none\*\*\** |
+
+## PhpMaAdmin
+
+### Port 6060
+Permet d'accéder à l'interface de phpMyAdmin pour accéder à notre base de donnée MySQL. 
+
+| *User* |  *Password*        |
+|---     |---                 |
+| root   | *\*\*\*none\*\*\** |

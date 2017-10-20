@@ -1,6 +1,6 @@
 FROM jboss/wildfly:10.1.0.Final
 
-MAINTAINER Olivier Liechti <olivier.liechti@heig-vd.ch>
+MAINTAINER Maxime Guillod <maxime.guillod@heig-vd.ch>
 
 EXPOSE 8080 9990
 
@@ -21,7 +21,4 @@ USER jboss
 # RUN jar -cvf build.war *
 # RUN mv build.war /opt/jboss/wildfly/standalone/deployments/
 
-
-
 CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
-
