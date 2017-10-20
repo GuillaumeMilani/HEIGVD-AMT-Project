@@ -18,5 +18,5 @@ public interface KebabShopManagerLocal {
 
     KebabShop getRandomKebabShop();
 
-    List<KebabShop> getAllKebabShops();
+    List<KebabShop> findAllKebabShops();
 }
