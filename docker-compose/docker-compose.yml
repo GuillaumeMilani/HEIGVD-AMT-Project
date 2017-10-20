@@ -11,12 +11,22 @@ services:
     restart: always
     build: ../images/mysql
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "true" 
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
     volumes:
       - mac-data:/var/lib/mysql
     expose:
       - "3306"
     ports: 
       - "3306:3306"
+  phpmyadmin:
+    container_name: amt_phpmyadmin
+    build: ../images/phpmyadmin
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+    ports:
+      # 6060 is the local port
+      - "6060:80"
+    links:
+      - mysql:db
 volumes:
   mac-data:
