@@ -14,4 +14,6 @@ public interface KebabShopManagerLocal {
     KebabShop getRandomKebabShop();
 
     List<KebabShop> findAllKebabShops();
+    
+    void addKebabShop(KebabShop kebabShop) throws Exception;
 }

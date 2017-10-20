@@ -22,7 +22,7 @@ public class KebabShopManager implements KebabShopManagerLocal {
 
     @Resource(lookup = "java:/MySqlDS")
     private DataSource dataSource;
-    
+
     @Override
     public KebabShop getRandomKebabShop() {
         return new KebabShop("Dylan", "Grand-Rue 1", "Yverdon", "Switzerland", "0", "today", 9.85f);
@@ -31,7 +31,7 @@ public class KebabShopManager implements KebabShopManagerLocal {
     @Override
     public List<KebabShop> findAllKebabShops() {
         List<KebabShop> kebabShops = new ArrayList<>();
-        
+
         try {
             Connection connection = dataSource.getConnection();
             PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM Kebab_Shop");
@@ -43,11 +43,12 @@ public class KebabShopManager implements KebabShopManagerLocal {
         } catch (SQLException ex) {
             Logger.getLogger(KebabShopManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return kebabShops;
     }
-    
+
     private KebabShop getKebabShopFromResult(ResultSet resultSet) throws SQLException {
+        long id = resultSet.getLong("id");
         String name = resultSet.getString("name");
         String street = resultSet.getString("street");
         String city = resultSet.getString("city");
@@ -55,8 +56,27 @@ public class KebabShopManager implements KebabShopManagerLocal {
         String phone = resultSet.getString("phone");
         float kebabAveragePrice = resultSet.getFloat("kebab_average_price");
         String creationDate = resultSet.getString("creation_date");
-        KebabShop kebabShop = new KebabShop(name, street, city, country, phone, creationDate, kebabAveragePrice);
-        
+        KebabShop kebabShop = new KebabShop(id, name, street, city, country, phone, creationDate, kebabAveragePrice);
+
         return kebabShop;
+    }
+
+    @Override
+    public void addKebabShop(KebabShop kebabShop) throws Exception {
+        try {
+            Connection connection = dataSource.getConnection();
+            String query = String.format(
+                    "INSERT INTO `Kebab_Shop` (`name`, `street`, `city`, `country`, `phone`, `kebab_average_price`, `creation_date`) "
+                    + "VALUES ('%s', '%s', '%s', '%s', '%s', %f, '%s');",
+                    kebabShop.getName(), kebabShop.getStreet(), kebabShop.getCity(), kebabShop.getCountry(), kebabShop.getPhone(), kebabShop.getKebabAveragePrice(), kebabShop.getCreationDate()
+            );
+            PreparedStatement pstmt = connection.prepareStatement(query);
+
+            pstmt.executeUpdate();
+            
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(KebabShopManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
