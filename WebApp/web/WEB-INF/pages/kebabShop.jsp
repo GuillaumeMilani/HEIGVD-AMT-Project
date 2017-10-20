@@ -9,21 +9,26 @@
     <body>
         <h1>Kebab shops manager</h1>
         <form method="POST">
-            <input type="text" maxlength="50" placeholder="Name" name="name" />
-            <input type="text" maxlength="50" placeholder="Street address" name="street" />
-            <input type="text" maxlength="50" placeholder="City" name="city" />
-            <input type="text" maxlength="50" placeholder="Country" name="country" />
-            <input type="tel" maxlength="50" placeholder="Phone" name="phone" />
-            <input type="number" step ="0.01" placeholder="Kebab average price" name="kebab_average_price" />
-            <input type="submit" value="Create" />
+            <input type="hidden" value="${kebabShopToEdit.id}" name="id" />
+            <input type="text" maxlength="50" placeholder="Name" name="name" value="${kebabShopToEdit.name}" />
+            <input type="text" maxlength="50" placeholder="Street address" name="street" value="${kebabShopToEdit.street}" />
+            <input type="text" maxlength="50" placeholder="City" name="city" value="${kebabShopToEdit.city}" />
+            <input type="text" maxlength="50" placeholder="Country" name="country" value="${kebabShopToEdit.country}" />
+            <input type="tel" maxlength="50" placeholder="Phone" name="phone" value="${kebabShopToEdit.phone}" />
+            <input type="number" step ="0.01" placeholder="Kebab average price" name="kebab_average_price" value="${kebabShopToEdit.kebabAveragePrice}" />
+            <input type="submit" value="Save" />
         </form>
         <table>
             <c:forEach items="${kebabShops}" var="kebabShop">
                 <tr>
-                    <td>        <input type="hidden" value="${kebabShop.id}"/>${kebabShop.name}</td>
+                    <td>${kebabShop.name}</td>
                     <td>${kebabShop.street}</td>
                     <td>${kebabShop.city}</td>
+                    <td>${kebabShop.country}</td>
+                    <td>${kebabShop.phone}</td>
                     <td>${kebabShop.kebabAveragePrice}</td>
+                    <td><a href="?page=${currentPage}&edit=${kebabShop.id}">Edit</a></td>
+                    <td><a href="?page=${currentPage}&delete=${kebabShop.id}">Delete</a></td>
                 </tr>
             </c:forEach>
         </table>

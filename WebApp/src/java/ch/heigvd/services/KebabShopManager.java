@@ -25,11 +25,6 @@ public class KebabShopManager implements KebabShopManagerLocal {
     private DataSource dataSource;
 
     @Override
-    public KebabShop getRandomKebabShop() {
-        return new KebabShop("Dylan", "Grand-Rue 1", "Yverdon", "Switzerland", "0", "today", 9.85f);
-    }
-
-    @Override
     public List<KebabShop> findAllKebabShops() {
         return findAllKebabShops(-1);
     }
@@ -49,15 +44,33 @@ public class KebabShopManager implements KebabShopManagerLocal {
     }
 
     @Override
-    public void addKebabShop(KebabShop kebabShop) throws Exception {
+    public void saveKebabShop(KebabShop kebabShop) throws Exception {
         try {
             Connection connection = dataSource.getConnection();
-            String query = String.format(
-                    "INSERT INTO `Kebab_Shop` (`name`, `street`, `city`, `country`, `phone`, `kebab_average_price`, `creation_date`) "
-                    + "VALUES ('%s', '%s', '%s', '%s', '%s', %f, '%s');",
-                    kebabShop.getName(), kebabShop.getStreet(), kebabShop.getCity(), kebabShop.getCountry(), kebabShop.getPhone(), kebabShop.getKebabAveragePrice(), kebabShop.getCreationDate()
-            );
-            PreparedStatement pstmt = connection.prepareStatement(query);
+            String query;
+            PreparedStatement pstmt;
+
+            if (kebabShop.getId() > -1) {
+                query = "UPDATE `Kebab_Shop` SET"
+                        + "`name` = ?, `street` = ?, `city` = ?, `country` = ?, `phone` = ?, `kebab_average_price` = ?"
+                        + "WHERE `id` = ?;";
+                pstmt = connection.prepareStatement(query);
+
+                pstmt.setLong(7, kebabShop.getId());
+            } else {
+                query = "INSERT INTO `Kebab_Shop` (`name`, `street`, `city`, `country`, `phone`, `kebab_average_price`, `creation_date`) "
+                        + "VALUES (?, ?, ?, ?, ?, ?, ?);";
+                pstmt = connection.prepareStatement(query);
+
+                pstmt.setString(7, kebabShop.getCreationDate());
+            }
+
+            pstmt.setString(1, kebabShop.getName());
+            pstmt.setString(2, kebabShop.getStreet());
+            pstmt.setString(3, kebabShop.getCity());
+            pstmt.setString(4, kebabShop.getCountry());
+            pstmt.setString(5, kebabShop.getPhone());
+            pstmt.setFloat(6, kebabShop.getKebabAveragePrice());
 
             pstmt.executeUpdate();
 
@@ -116,5 +129,39 @@ public class KebabShopManager implements KebabShopManagerLocal {
     @Override
     public int getNbPages() {
         return (int) Math.ceil((double) countKebabShops() / (double) Constants.ITEM_PER_PAGE);
+    }
+
+    @Override
+    public KebabShop findKebabShop(long id) {
+        // TODO: Error if not found ?
+        KebabShop kebabShop = null;
+
+        try {
+            Connection connection = dataSource.getConnection();
+            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM Kebab_Shop WHERE id = " + id);
+            ResultSet resultSet = pstmt.executeQuery();
+            if (resultSet.next()) {
+                kebabShop = getKebabShopFromResult(resultSet);
+            }
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(KebabShopManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return kebabShop;
+    }
+
+    @Override
+    public void deleteKebabShop(long id) {
+        // TODO: Error if not found ?
+        try {
+            Connection connection = dataSource.getConnection();
+            PreparedStatement pstmt = connection.prepareStatement("DELETE FROM Kebab_Shop WHERE id = " + id);
+            pstmt.executeUpdate();
+
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(KebabShopManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

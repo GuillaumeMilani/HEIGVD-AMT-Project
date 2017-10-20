@@ -11,15 +11,17 @@ import ch.heigvd.model.entities.KebabShop;
 @Local
 public interface KebabShopManagerLocal {
 
-    KebabShop getRandomKebabShop();
-
     List<KebabShop> findAllKebabShops(int page);
 
     List<KebabShop> findAllKebabShops();
+
+    KebabShop findKebabShop(long id);
 
     int countKebabShops();
 
     int getNbPages();
 
-    void addKebabShop(KebabShop kebabShop) throws Exception;
+    void saveKebabShop(KebabShop kebabShop) throws Exception;
+
+    void deleteKebabShop(long id);
 }

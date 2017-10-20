@@ -27,19 +27,40 @@ public class KebabShopsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        // Element edition
+        String editParam = request.getParameter("edit");
+        if (editParam != null) {
+            long id = Long.valueOf(editParam);
+            KebabShop kebabShopToEdit = kebabShopManager.findKebabShop(id);
+            request.setAttribute("kebabShopToEdit", kebabShopToEdit);
+        }
+
+        // Element suppression
+        String deleteParam = request.getParameter("delete");
+        if (deleteParam != null) {
+            long id = Long.valueOf(deleteParam);
+            kebabShopManager.deleteKebabShop(id);
+        }
+
+        // Pagination
         String pageString = request.getParameter("page");
 
         int currentPage = pageString == null ? 1 : Integer.valueOf(request.getParameter("page"));
         int nbPages = kebabShopManager.getNbPages();
-
         request.setAttribute("currentPage", currentPage);
         request.setAttribute("nbPages", nbPages);
+
+        // Shops list
         request.setAttribute("kebabShops", kebabShopManager.findAllKebabShops(currentPage));
+
         request.getRequestDispatcher("WEB-INF/pages/kebabShop.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // TODO: Check if fields filled
+        String idField = request.getParameter("id");
+        long id = idField == null || "".equals(idField) ? -1 : Long.valueOf(idField);
         String name = request.getParameter("name");
         String street = request.getParameter("street");
         String city = request.getParameter("city");
@@ -47,10 +68,10 @@ public class KebabShopsServlet extends HttpServlet {
         String phone = request.getParameter("phone");
         float kebabAveragePrice = Float.valueOf(request.getParameter("kebab_average_price"));
         String creationDate = new Date(System.currentTimeMillis()).toString();
-        KebabShop kebabShop = new KebabShop(name, street, city, country, phone, creationDate, kebabAveragePrice);
+        KebabShop kebabShop = new KebabShop(id, name, street, city, country, phone, creationDate, kebabAveragePrice);
 
         try {
-            kebabShopManager.addKebabShop(kebabShop);
+            kebabShopManager.saveKebabShop(kebabShop);
         } catch (Exception ex) {
             Logger.getLogger(KebabShopsServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
