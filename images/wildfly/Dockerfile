@@ -2,7 +2,8 @@ FROM jboss/wildfly:10.1.0.Final
 
 MAINTAINER Maxime Guillod <maxime.guillod@heig-vd.ch>
 
-EXPOSE 8080 9990
+# COPY mysql-connector.jar /opt/jboss/wildfly/standalone/deployments/
+COPY standalone.xml /opt/jboss/wildfly/standalone/configuration/
 
 # Set the user and the password
 RUN /opt/jboss/wildfly/bin/add-user.sh admin admin --silent
@@ -11,9 +12,9 @@ RUN /opt/jboss/wildfly/bin/add-user.sh admin admin --silent
 ADD MVCApp.war /opt/jboss/wildfly/standalone/deployments/
 
 # Install git
-USER root
-RUN yum update -y && yum -y install git && yum clean all
-USER jboss
+# USER root
+# RUN yum update -y && yum -y install git && yum clean all
+# USER jboss
 
 # Download & comlile our source 
 # RUN git clone https://github.com/lognaume/amt-project.git

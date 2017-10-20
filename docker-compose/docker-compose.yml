@@ -6,12 +6,14 @@ services:
     ports:
      - "8080:8080"
      - "9990:9990"
+    links:
+      - mysql:db
   mysql:
     container_name: amt_mysql
     restart: always
     build: ../images/mysql
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+      - MYSQL_ROOT_PASSWORD=myPass
     volumes:
       - mac-data:/var/lib/mysql
     expose:
@@ -22,9 +24,8 @@ services:
     container_name: amt_phpmyadmin
     build: ../images/phpmyadmin
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+      - MYSQL_ROOT_PASSWORD=myPass
     ports:
-      # 6060 is the local port
       - "6060:80"
     links:
       - mysql:db
