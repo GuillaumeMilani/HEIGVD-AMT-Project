@@ -16,8 +16,8 @@ USER root
 RUN yum update -y && yum -y install wget && yum clean all
 USER jboss
 
-# Download & deplay app
+# Download & deploy app
 RUN wget $(curl -s https://api.github.com/repos/lognaume/HEIGVD-AMT-Project/releases/latest | grep browser_download_url | cut -d '"' -f 4)
 RUN mv WebApp.war /opt/jboss/wildfly/standalone/deployments/
 
-CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
+CMD startup.sh
