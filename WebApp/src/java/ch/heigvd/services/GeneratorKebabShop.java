@@ -37,11 +37,11 @@ public class GeneratorKebabShop {
     }
 
     private String getName() {
-        return names[random(0, names.length)];
+        return names[random(0, names.length - 1)];
     }
 
     private String getCity() {
-        return cities[random(0, cities.length)];
+        return cities[random(0, cities.length - 1)];
     }
 
     private String getStreet() {
