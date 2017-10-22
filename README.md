@@ -4,7 +4,8 @@
 
 Pour lancer le système ainsi que tout les containers, rendez-vous avec votre terminal favori dans le dossier `docker-compose`, et lancez `docker_launch.sh`. Ce dernier aura pour effet de lancer notre docker-compose avec tout nos containers : PhpMyAdmin, MySQL ainsi que WildFly.
 
-Pour accéder à notre application, rendez-vous à cette adresse :  `http://192.168.99.100:8080/WebApp/kebabShops`
+Pour accéder à notre application, rendez-vous à cette adresse :  
+[http://192.168.99.100:8080/WebApp/kebabShops](http://192.168.99.100:8080/WebApp/kebabShops)
 
 ## Container
 ### WildFly
