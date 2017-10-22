@@ -9,6 +9,7 @@
     <body>
         <h1>Kebab shops manager</h1>
         <form method="POST">
+          <input type="hidden" name="form" value="add" >
             <input type="hidden" value="${kebabShopToEdit.id}" name="id" />
             <input type="text" maxlength="50" placeholder="Name" name="name" value="${kebabShopToEdit.name}" />
             <input type="text" maxlength="50" placeholder="Street address" name="street" value="${kebabShopToEdit.street}" />
@@ -18,6 +19,12 @@
             <input type="number" step ="0.01" placeholder="Kebab average price" name="kebab_average_price" value="${kebabShopToEdit.kebabAveragePrice}" />
             <input type="submit" value="Save" />
         </form>
+        <hr>
+          <form method="POST">
+            <input type="number" placeholder="Numbre d'élément à générer" name="generatorNbr" step="1" min="0" />
+            <input type="submit" value="Générer" />
+        </form>
+        <hr>
         <table>
             <c:forEach items="${kebabShops}" var="kebabShop">
                 <tr>

@@ -24,4 +24,6 @@ public interface KebabShopManagerLocal {
     void saveKebabShop(KebabShop kebabShop) throws Exception;
 
     void deleteKebabShop(long id);
+    
+    void generateData(int nbr);
 }

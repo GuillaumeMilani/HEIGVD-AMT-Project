@@ -164,4 +164,16 @@ public class KebabShopManager implements KebabShopManagerLocal {
             Logger.getLogger(KebabShopManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @Override
+    public void generateData(int nbr) {
+        GeneratorKebabShop g = new GeneratorKebabShop();
+        for (int i = 0; i < nbr; i++) {
+            try {
+                saveKebabShop(g.getKebabShop());
+            } catch (Exception ex) {
+                Logger.getLogger(KebabShopManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 }

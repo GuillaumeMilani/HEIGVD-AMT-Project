@@ -59,21 +59,29 @@ public class KebabShopsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO: Check if fields filled
-        String idField = request.getParameter("id");
-        long id = idField == null || "".equals(idField) ? -1 : Long.valueOf(idField);
-        String name = request.getParameter("name");
-        String street = request.getParameter("street");
-        String city = request.getParameter("city");
-        String country = request.getParameter("country");
-        String phone = request.getParameter("phone");
-        float kebabAveragePrice = Float.valueOf(request.getParameter("kebab_average_price"));
-        String creationDate = new Date(System.currentTimeMillis()).toString();
-        KebabShop kebabShop = new KebabShop(id, name, street, city, country, phone, creationDate, kebabAveragePrice);
 
-        try {
-            kebabShopManager.saveKebabShop(kebabShop);
-        } catch (Exception ex) {
-            Logger.getLogger(KebabShopsServlet.class.getName()).log(Level.SEVERE, null, ex);
+        String formType = request.getParameter("form");
+
+        if (formType == "add") {
+            String idField = request.getParameter("id");
+            long id = idField == null || "".equals(idField) ? -1 : Long.valueOf(idField);
+            String name = request.getParameter("name");
+            String street = request.getParameter("street");
+            String city = request.getParameter("city");
+            String country = request.getParameter("country");
+            String phone = request.getParameter("phone");
+            float kebabAveragePrice = Float.valueOf(request.getParameter("kebab_average_price"));
+            String creationDate = new Date(System.currentTimeMillis()).toString();
+            KebabShop kebabShop = new KebabShop(id, name, street, city, country, phone, creationDate, kebabAveragePrice);
+
+            try {
+                kebabShopManager.saveKebabShop(kebabShop);
+            } catch (Exception ex) {
+                Logger.getLogger(KebabShopsServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (formType == "generate") {
+            int nbr = new Integer(request.getParameter("generatorNbr"));
+            kebabShopManager.generateData(nbr);
         }
 
         doGet(request, response);
