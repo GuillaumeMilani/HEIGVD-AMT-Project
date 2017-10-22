@@ -9,7 +9,7 @@
     <body>
         <h1>Kebab shops manager</h1>
         <form method="POST">
-          <input type="hidden" name="form" value="add" >
+            <input type="hidden" name="form" value="add" />
             <input type="hidden" value="${kebabShopToEdit.id}" name="id" />
             <input type="text" maxlength="50" placeholder="Name" name="name" value="${kebabShopToEdit.name}" />
             <input type="text" maxlength="50" placeholder="Street address" name="street" value="${kebabShopToEdit.street}" />
@@ -21,6 +21,7 @@
         </form>
         <hr>
           <form method="POST">
+            <input type="hidden" name="form" value="generate" />
             <input type="number" placeholder="Numbre d'élément à générer" name="generatorNbr" step="1" min="0" />
             <input type="submit" value="Générer" />
         </form>
