@@ -29,6 +29,26 @@ public class GeneratorKebabShop {
         "Vevey",
         "Corcelles"};
 
+    private String[] street1 = {
+        "Route",
+        "Place",
+        "Impasse",
+        "Chemin",
+        "Rue",
+        "Avenue"};
+
+    private String[] street2 = {
+        "du pont",
+        "du général",
+        "du refuge",
+        "de la fenette",
+        "du sansuie",
+        "du favez",
+        "du gymnase",
+        "de la coline",
+        "de Vuary",
+        "du centre"};
+
     public GeneratorKebabShop() {
     }
 
@@ -45,7 +65,12 @@ public class GeneratorKebabShop {
     }
 
     private String getStreet() {
-        return "Place centrale";
+        String street = street1[random(0, street1.length - 1)];
+        street += " ";
+        street += street2[random(0, street2.length - 1)];
+        street += " ";
+        street += random(1, 23);
+        return street;
     }
 
     private String getCountry() {
