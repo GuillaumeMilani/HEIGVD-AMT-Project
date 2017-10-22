@@ -62,7 +62,8 @@ public class KebabShopsServlet extends HttpServlet {
 
         String formType = request.getParameter("form");
 
-        if (formType == "add") {
+        if ("add".equals(formType)) {
+            System.out.println("ADD data");
             String idField = request.getParameter("id");
             long id = idField == null || "".equals(idField) ? -1 : Long.valueOf(idField);
             String name = request.getParameter("name");
@@ -79,7 +80,8 @@ public class KebabShopsServlet extends HttpServlet {
             } catch (Exception ex) {
                 Logger.getLogger(KebabShopsServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if (formType == "generate") {
+        } else if ("generate".equals(formType)) {
+            System.out.println("GENERATE data");
             int nbr = new Integer(request.getParameter("generatorNbr"));
             kebabShopManager.generateData(nbr);
         }
