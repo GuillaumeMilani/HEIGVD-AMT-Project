@@ -91,6 +91,7 @@ public class KebabShopManager implements KebabShopManagerLocal {
 
         try {
             Connection connection = dataSource.getConnection();
+            setDatabaseEncode(connection);
             PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM Kebab_Shop" + limit);
             ResultSet resultSet = pstmt.executeQuery();
             while (resultSet.next()) {
@@ -111,6 +112,7 @@ public class KebabShopManager implements KebabShopManagerLocal {
 
         try {
             Connection connection = dataSource.getConnection();
+            setDatabaseEncode(connection);
             PreparedStatement pstmt = connection.prepareStatement("SELECT COUNT(*) AS " + nbShopsString + " FROM Kebab_Shop");
             ResultSet resultSet = pstmt.executeQuery();
             if (resultSet.next()) {
@@ -136,6 +138,7 @@ public class KebabShopManager implements KebabShopManagerLocal {
 
         try {
             Connection connection = dataSource.getConnection();
+            setDatabaseEncode(connection);
             PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM Kebab_Shop WHERE id = " + id);
             ResultSet resultSet = pstmt.executeQuery();
             if (resultSet.next()) {
@@ -173,5 +176,10 @@ public class KebabShopManager implements KebabShopManagerLocal {
                 Logger.getLogger(KebabShopManager.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+
+    private void setDatabaseEncode(Connection c) throws SQLException {
+        PreparedStatement pstmt = c.prepareStatement("SET NAMES " + Constants.DATABASE_ENCODE);
+        pstmt.executeUpdate();
     }
 }
