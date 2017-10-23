@@ -48,7 +48,7 @@
             <div class="overlay">
                 <div class="container">
                     <h1 class="display-1 text-white">Kebab Shop</h1>
-                    <h2 class="display-4 text-white">Found your Kebab</h2>
+                    <h2 class="display-4 text-white">Find your Kebab</h2>
                 </div>
             </div>
         </header>
@@ -95,11 +95,11 @@
                                     <a href="?page=${currentPage - 1}">
                                         <</a>
                                     </c:if>
-                                <c:if test="${currentPage <= 1}">
+                                    <c:if test="${currentPage <= 1}">
                                     <span class="disabled"><<</span> <span class="disabled"><</span>
                                 </c:if>
                                 ${currentPage} / ${nbPages}
-                                    <c:if test="${currentPage < nbPages}">
+                                <c:if test="${currentPage < nbPages}">
                                     <a href="?page=${currentPage + 1}" class="enabled">></a>
                                     <a href="?page=${nbPages}" class="enabled">>></a>
                                 </c:if>

@@ -91,12 +91,8 @@ public class GeneratorKebabShop {
         return random(8, 14);
     }
 
-    private String getCreatedDate() {
-        return new Date(System.currentTimeMillis()).toString();
-    }
-
     public KebabShop getKebabShop() {
-        return new KebabShop(getName(), getStreet(), getCity(), getCountry(), getPhone(), getCreatedDate(), getPrice());
+        return new KebabShop(getName(), getStreet(), getCity(), getCountry(), getPhone(), null, getPrice());
     }
 
 }

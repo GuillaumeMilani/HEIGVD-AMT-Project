@@ -58,11 +58,9 @@ public class KebabShopManager implements KebabShopManagerLocal {
 
                 pstmt.setLong(7, kebabShop.getId());
             } else {
-                query = "INSERT INTO `Kebab_Shop` (`name`, `street`, `city`, `country`, `phone`, `kebab_average_price`, `creation_date`) "
-                        + "VALUES (?, ?, ?, ?, ?, ?, ?);";
+                query = "INSERT INTO `Kebab_Shop` (`name`, `street`, `city`, `country`, `phone`, `kebab_average_price`) "
+                        + "VALUES (?, ?, ?, ?, ?, ?);";
                 pstmt = connection.prepareStatement(query);
-
-                pstmt.setString(7, kebabShop.getCreationDate());
             }
 
             pstmt.setString(1, kebabShop.getName());
