@@ -4,6 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="style.css">        
         <title>JSP Page</title>
     </head>
     <body>
@@ -26,8 +27,18 @@
             <input type="submit" value="Générer" />
         </form>
         <hr>
-        <table>
+        <table class="steelBlueCols">
             <c:forEach items="${kebabShops}" var="kebabShop">
+                <tr>
+                    <th>Name</th>
+                    <th>Street</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>Phone</th>
+                    <th>AveragePrice</th>
+                    <th></th>
+                    <th></th>
+                </tr>
                 <tr>
                     <td>${kebabShop.name}</td>
                     <td>${kebabShop.street}</td>
