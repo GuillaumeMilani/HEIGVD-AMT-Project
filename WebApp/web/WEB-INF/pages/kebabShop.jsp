@@ -92,17 +92,17 @@
             </form>
             <hr>
             <table class="steelBlueCols">
+                <tr>
+                    <th>Name</th>
+                    <th>Street</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>Phone</th>
+                    <th>AveragePrice</th>
+                    <th></th>
+                    <th></th>
+                </tr>
                 <c:forEach items="${kebabShops}" var="kebabShop">
-                    <tr>
-                        <th>Name</th>
-                        <th>Street</th>
-                        <th>City</th>
-                        <th>Country</th>
-                        <th>Phone</th>
-                        <th>AveragePrice</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
                     <tr>
                         <td>${kebabShop.name}</td>
                         <td>${kebabShop.street}</td>
