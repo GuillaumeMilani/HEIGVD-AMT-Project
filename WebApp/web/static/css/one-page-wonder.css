@@ -33,3 +33,12 @@ header.masthead > .overlay {
         padding: 10rem 0;
     }
 }
+
+a .disable {
+    color: lightgray;
+    cursor: default;
+}
+
+a .disable:hover {
+    text-decoration: none;
+}
