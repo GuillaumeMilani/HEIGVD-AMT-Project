@@ -178,6 +178,12 @@ public class KebabShopManager implements KebabShopManagerLocal {
         }
     }
 
+    /**
+     * Set the encoding for the SELECT command for our connection.
+     *
+     * @param c
+     * @throws SQLException
+     */
     private void setDatabaseEncode(Connection c) throws SQLException {
         PreparedStatement pstmt = c.prepareStatement("SET NAMES " + Constants.DATABASE_ENCODE);
         pstmt.executeUpdate();

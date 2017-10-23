@@ -1,9 +1,9 @@
 package ch.heigvd.services;
 
 import ch.heigvd.model.entities.KebabShop;
-import java.sql.Date;
 
 /**
+ * Use to generate pseudo-random KebabShop with selecting one of all the proposition we have for the details.
  *
  * @author Guillaume Milani & Maxime Guillod
  */
@@ -29,6 +29,9 @@ public class GeneratorKebabShop {
         "Vevey",
         "Corcelles"};
 
+    /**
+     * List of first part use to generate pseudo-random street
+     */
     private String[] street1 = {
         "Route",
         "Place",
@@ -37,6 +40,9 @@ public class GeneratorKebabShop {
         "Rue",
         "Avenue"};
 
+    /**
+     * List of second part use to generate pseudo-random street
+     */
     private String[] street2 = {
         "du pont",
         "du général",
@@ -50,6 +56,7 @@ public class GeneratorKebabShop {
         "du centre"};
 
     public GeneratorKebabShop() {
+        // Nothing
     }
 
     private int random(int min, int max) {
@@ -73,10 +80,19 @@ public class GeneratorKebabShop {
         return street;
     }
 
+    /**
+     *
+     * @return
+     */
     private String getCountry() {
         return "Suisse";
     }
 
+    /**
+     * Create a random telephone
+     *
+     * @return
+     */
     private String getPhone() {
         String retour = "0";
 
@@ -87,10 +103,20 @@ public class GeneratorKebabShop {
         return retour;
     }
 
+    /**
+     * Create a ramdom price
+     *
+     * @return
+     */
     private float getPrice() {
         return random(8, 14);
     }
 
+    /**
+     * Create a random kebabShop
+     *
+     * @return Random kebabShop
+     */
     public KebabShop getKebabShop() {
         return new KebabShop(getName(), getStreet(), getCity(), getCountry(), getPhone(), null, getPrice());
     }
