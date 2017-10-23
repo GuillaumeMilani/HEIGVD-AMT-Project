@@ -72,5 +72,5 @@ Permet d'accéder à l'interface de phpMyAdmin pour accéder à notre base de do
 | You implement authentication and authorization. Users have to login to access the configuration page. | :red_circle: |
 | You have done performance tests with JMeter (or a similar tool) and you have a report with results | :red_circle: |
 | When the user deletes a thing, he is asked for confirmation. He can tick a “Don’t ask me again” checkbox. | :red_circle: |
-| You wanted to explore something else (e.g. UI testing, continuous integration, advanced feature). You have sold us the idea | :red_circle: |
+| You wanted to explore something else (e.g. UI testing, continuous integration, advanced feature). You have sold us the idea <hr/> *Nous avons mis en place un flux de travail grâce à l'outil d'intégration continue Travis qui construit le container .war à chaque commit sur la branche master et le publie sur GitHub releases. <br/>Au lancement du container docker de Wildfly, la dernière version du fichier .war est automatiquement téléchargée* | :white_check_mark: |
 
