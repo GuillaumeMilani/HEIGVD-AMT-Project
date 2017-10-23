@@ -48,7 +48,7 @@
       <div class="overlay">
         <div class="container">
           <h1 class="display-1 text-white">Kebab Shop</h1>
-          <h2 class="display-4 text-white">Found your Kebab</h2>
+          <h2 class="display-4 text-white">Find your Kebab</h2>
         </div>
       </div>
     </header>
