@@ -34,11 +34,7 @@ header.masthead > .overlay {
     }
 }
 
-a .disable {
+.disabled {
     color: lightgray;
     cursor: default;
-}
-
-a .disable:hover {
-    text-decoration: none;
 }
