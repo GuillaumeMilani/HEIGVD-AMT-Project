@@ -1,136 +1,162 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-        <!DOCTYPE html>
-        <html>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html lang="en">
 
-        <head>
-            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <style>
-                table.steelBlueCols {
-                    border: 4px solid #555555;
-                    background-color: #555555;
-                    width: 400px;
-                    text-align: center;
-                    border-collapse: collapse;
-                }
+  <head>
 
-                table.steelBlueCols td,
-                table.steelBlueCols th {
-                    border: 1px solid #555555;
-                    padding: 5px 10px;
-                }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-                table.steelBlueCols tbody td {
-                    font-size: 12px;
-                    font-weight: bold;
-                    color: #FFFFFF;
-                }
+    <title>Kebab Shop</title>
 
-                table.steelBlueCols tr:nth-child(even) {
-                    background: #398AA4;
-                }
+    <!-- Bootstrap core CSS -->
+    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-                table.steelBlueCols thead {
-                    background: #398AA4;
-                    border-bottom: 10px solid #398AA4;
-                }
+    <!-- Custom styles for this template -->
+    <link href="static/css/one-page-wonder.css" rel="stylesheet">
 
-                table.steelBlueCols thead th {
-                    font-size: 15px;
-                    font-weight: bold;
-                    color: #FFFFFF;
-                    text-align: left;
-                    border-left: 2px solid #398AA4;
-                }
+  </head>
 
-                table.steelBlueCols th {
-                    color: white;
-                }
+  <body>
 
-                table.steelBlueCols thead th:first-child {
-                    border-left: none;
-                }
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Kebab Shop</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Accueil
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-                table.steelBlueCols tfoot td {
-                    font-size: 13px;
-                }
+    <header class="masthead">
+      <div class="overlay">
+        <div class="container">
+          <h1 class="display-1 text-white">Kebab Shop</h1>
+          <h2 class="display-4 text-white">Found your Kebab</h2>
+        </div>
+      </div>
+    </header>
 
-                table.steelBlueCols tfoot .links {
-                    text-align: right;
-                }
-
-                table.steelBlueCols tfoot .links a {
-                    display: inline-block;
-                    background: #FFFFFF;
-                    color: #398AA4;
-                    padding: 2px 8px;
-                    border-radius: 5px;
-                }
-            </style>
-            <title>JSP Page</title>
-        </head>
-
-        <body>
-            <h1>Kebab shops manager</h1>
-            <form method="POST">
-                <input type="hidden" name="form" value="add" />
-                <input type="hidden" value="${kebabShopToEdit.id}" name="id" />
-                <input type="text" maxlength="50" placeholder="Name" name="name" value="${kebabShopToEdit.name}" />
-                <input type="text" maxlength="50" placeholder="Street address" name="street" value="${kebabShopToEdit.street}" />
-                <input type="text" maxlength="50" placeholder="City" name="city" value="${kebabShopToEdit.city}" />
-                <input type="text" maxlength="50" placeholder="Country" name="country" value="${kebabShopToEdit.country}" />
-                <input type="tel" maxlength="50" placeholder="Phone" name="phone" value="${kebabShopToEdit.phone}" />
-                <input type="number" step="0.01" placeholder="Kebab average price" name="kebab_average_price" value="${kebabShopToEdit.kebabAveragePrice}"
-                />
-                <input type="submit" value="Save" />
-            </form>
-            <hr>
-            <form method="POST">
-                <input type="hidden" name="form" value="generate" />
-                <input type="number" placeholder="Numbre d'élément à générer" name="generatorNbr" step="1" min="0" />
-                <input type="submit" value="Générer" />
-            </form>
-            <hr>
-            <table class="steelBlueCols">
+    <section>
+      <div class="container">
+        <form method="POST">
+          <input type="hidden" name="form" value="add" />
+          <input type="hidden" value="${kebabShopToEdit.id}" name="id" />
+          <div class="form-group">
+            <label>Name</label>
+            <input class="form-control" type="text" maxlength="50" placeholder="Name" name="name" value="${kebabShopToEdit.name}" />
+          </div>
+          <div class="form-group">
+            <label>Street Adress</label>
+            <input class="form-control" type="text" maxlength="50" placeholder="Street address" name="street" value="${kebabShopToEdit.street}" />
+          </div>
+          <div class="form-group">
+            <label>City</label>
+            <input class="form-control" type="text" maxlength="50" placeholder="City" name="city" value="${kebabShopToEdit.city}" />
+          </div>
+          <div class="form-group">
+            <label>Country</label>
+            <input class="form-control" type="text" maxlength="50" placeholder="Country" name="country" value="${kebabShopToEdit.country}" />
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input class="form-control" type="tel" maxlength="50" placeholder="Phone" name="phone" value="${kebabShopToEdit.phone}" />
+          </div>
+          <div class="form-group">
+            <label>Average Price</label>
+            <input class="form-control" type="number" step="0.01" placeholder="Kebab average price" name="kebab_average_price" value="${kebabShopToEdit.kebabAveragePrice}" />
+          </div>
+          <input class="btn btn-primary" type="submit" value="Save" />
+        </form>
+        <hr>
+        <form method="POST">
+          <input type="hidden" name="form" value="generate" />
+          <div class="form-group">
+            <label>Nombre d'élément à générer</label>
+            <input class='form-control' type="number" placeholder="Numbre d'élément à générer" name="generatorNbr" step="1" min="0" />
+          </div>
+          <input class="btn btn-primary" type="submit" value="Générer" />
+        </form>
+      </div>
+    </section>
+    <hr/>
+    <section>
+      <div class="container">
+        <div class="table-responsive">
+          <table class="table">
+            <tr>
+              <th>Name</th>
+              <th>Street</th>
+              <th>City</th>
+              <th>Country</th>
+              <th>Phone</th>
+              <th>AveragePrice</th>
+              <th></th>
+              <th></th>
+            </tr>
+            <c:forEach items="${kebabShops}" var="kebabShop">
                 <tr>
-                    <th>Name</th>
-                    <th>Street</th>
-                    <th>City</th>
-                    <th>Country</th>
-                    <th>Phone</th>
-                    <th>AveragePrice</th>
-                    <th></th>
-                    <th></th>
+                  <td>${kebabShop.name}</td>
+                  <td>${kebabShop.street}</td>
+                  <td>${kebabShop.city}</td>
+                  <td>${kebabShop.country}</td>
+                  <td>${kebabShop.phone}</td>
+                  <td>${kebabShop.kebabAveragePrice}</td>
+                  <td>
+                    <a href="?page=${currentPage}&edit=${kebabShop.id}">Edit</a>
+                  </td>
+                  <td>
+                    <a href="?page=${currentPage}&delete=${kebabShop.id}">Delete</a>
+                  </td>
                 </tr>
-                <c:forEach items="${kebabShops}" var="kebabShop">
-                    <tr>
-                        <td>${kebabShop.name}</td>
-                        <td>${kebabShop.street}</td>
-                        <td>${kebabShop.city}</td>
-                        <td>${kebabShop.country}</td>
-                        <td>${kebabShop.phone}</td>
-                        <td>${kebabShop.kebabAveragePrice}</td>
-                        <td>
-                            <a href="?page=${currentPage}&edit=${kebabShop.id}">Edit</a>
-                        </td>
-                        <td>
-                            <a href="?page=${currentPage}&delete=${kebabShop.id}">Delete</a>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </table>
-            ${currentPage} / ${nbPages}
+            </c:forEach>
+          </table>
+        </div>
+        <div class="align-content-xl-start">
+          ${currentPage} / ${nbPages}
+          <c:if test="${currentPage > 1}">
+              <a href="?page=1">
+                <<</a>
+              <a href="?page=${currentPage - 1}">
+                <</a>
+              </c:if>
+              <c:if test="${currentPage < nbPages}">
+              <a href="?page=${currentPage + 1}">></a>
+              <a href="?page=${nbPages}">>></a>
+          </c:if>
+        </div>
+      </div>
+    </section>
 
-            <c:if test="${currentPage > 1}">
-                <a href="?page=1">
-                    <<</a>
-                        <a href="?page=${currentPage - 1}">
-                            <</a>
-            </c:if>
-            <c:if test="${currentPage < nbPages}">
-                <a href="?page=${currentPage + 1}">></a>
-                <a href="?page=${nbPages}">>></a>
-            </c:if>
-        </body>
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Author : <i>Guillaume Milani</i> & <i>Maxime Guillod</i></p>
+      </div>
+      <!-- /.container -->
+    </footer>
 
-        </html>
+    <!-- Bootstrap core JavaScript -->
+    <script src="static/vendor/jquery/jquery.min.js"></script>
+    <script src="static/vendor/popper/popper.min.js"></script>
+    <script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+  </body>
+
+</html>
