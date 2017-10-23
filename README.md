@@ -65,7 +65,7 @@ Permet d'accéder à l'interface de phpMyAdmin pour accéder à notre base de do
 | Feature  | Progress |
 | ------------- | ------------- |
 | A nice web template (e.g. based on Bootstrap) has been integrated | :white_check_mark: |
-| It is possible to sort the list by clicking on the column headers | :red_cicle: |
+| It is possible to sort the list by clicking on the column headers | :red_circle: |
 | It is possible to search within the list | :red_circle: |
 | The content of the form is validated on the server side. Error messages are displayed to the user | :white_check_mark: |
 | When you click on the “Generate” button, you trigger an async process (you get an immediate response). It is not possible to generate multiple batches in parallel. | :red_circle: |
